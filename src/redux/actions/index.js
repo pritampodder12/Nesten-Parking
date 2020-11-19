@@ -1,23 +1,18 @@
-import {
-  TOGGLE_LOADER,
-  SET_DROPDOWN_ALERT,
-  SHOW_DROPDOWN_ALERT,
-} from './actionTypes';
+import {TOGGLE_LOADER, SHOW_SNACKBAR, HIDE_SNACKBAR} from './actionTypes';
 
 export const toggleLoader = () => (dispatch) => {
   dispatch({
     type: TOGGLE_LOADER,
   });
 };
-export const setDropdownAlert = (ref) => (dispatch) => {
+export const showSnackbar = (message) => (dispatch) => {
   dispatch({
-    type: SET_DROPDOWN_ALERT,
-    payload: ref,
+    type: SHOW_SNACKBAR,
+    payload: {message},
   });
 };
-export const showDropdownAlert = (alertType, title, message) => (dispatch) => {
+export const hideSnackbar = () => (dispatch) => {
   dispatch({
-    type: SHOW_DROPDOWN_ALERT,
-    payload: {alertType, title, message},
+    type: HIDE_SNACKBAR,
   });
 };

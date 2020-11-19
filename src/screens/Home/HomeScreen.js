@@ -11,7 +11,7 @@ import BalanceModal from '../../components/BalanceModal';
 import {Constants} from '../../utils/Constants';
 import {styles as globalStyles} from '../../utils/styles';
 import apiService from '../../services/ApiService';
-import {showDropdownAlert} from '../../redux/actions';
+import {showSnackbar} from '../../redux/actions';
 
 function HomeScreen(props) {
   const [centerLocation, setCenterLocation] = useState([12.550343, 55.665957]);
@@ -45,7 +45,7 @@ function HomeScreen(props) {
         //   console.log('res of get', res);
         // });
         await apiService.getBalance('1', (res, err) => {
-          props.showDropdownAlert('warn', 'Error', 'Failed to load data!');
+          // props.showSnackbar('Failed to load data!');
         });
       } catch {}
     }
@@ -132,7 +132,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {showDropdownAlert})(HomeScreen);
+export default connect(mapStateToProps, {showSnackbar})(HomeScreen);
 
 const styles = StyleSheet.create({
   fullSpace: {

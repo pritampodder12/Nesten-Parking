@@ -11,7 +11,7 @@ import {
 import {View, StyleSheet} from 'react-native';
 
 import apiService from '../services/ApiService';
-import {showDropdownAlert} from '../redux/actions';
+import {showSnackbar} from '../redux/actions';
 import {connect} from 'react-redux';
 
 function BalanceModal(props) {
@@ -23,7 +23,7 @@ function BalanceModal(props) {
       apiService.getBalance(id, (res, error) => {
         if (res) setBalance(res.balanceof);
         if (error) {
-          props.showDropdownAlert('warn', 'Error', 'Failed to load Balance!');
+          props.showSnackbar('Failed to load Balance!');
         }
       });
     }
@@ -49,7 +49,7 @@ function BalanceModal(props) {
     </Portal>
   );
 }
-export default connect(null, {showDropdownAlert})(BalanceModal);
+export default connect(null, {showSnackbar})(BalanceModal);
 
 const styles = StyleSheet.create({
   modalContainer: {backgroundColor: 'white', margin: 30, borderRadius: 10},

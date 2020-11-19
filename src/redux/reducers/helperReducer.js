@@ -1,31 +1,29 @@
 import {
   TOGGLE_LOADER,
-  SET_DROPDOWN_ALERT,
-  SHOW_DROPDOWN_ALERT,
+  SHOW_SNACKBAR,
+  HIDE_SNACKBAR,
 } from '../actions/actionTypes';
 
 const initialState = {
-  showLoader: false,
+  visibleLoader: false,
+  visibleSnackbar: false,
   dropdownRef: null,
-  locationPermissionAllowed: false,
-  internetConnected: false,
+  snackbarMessage: '',
 };
 const helperReducer = (state = initialState, action) => {
+  let {payload} = action;
   switch (action.type) {
     case TOGGLE_LOADER:
-      return {...state, showLoader: !state.showLoader};
-    case SET_DROPDOWN_ALERT:
-      return {...state, dropdownRef: action.payload};
-    case SHOW_DROPDOWN_ALERT:
-      let {payload} = action;
-      if (state.dropdownRef !== null) {
-        state.dropdownRef.alertWithType(
-          payload.alertType,
-          payload.title,
-          payload.message,
-        );
-      }
-      return state;
+      return {...state, visibleLoader: !state.visibleLoader};
+    case SHOW_SNACKBAR:
+      return {
+        ...state,
+        snackbarMessage: payload.message,
+        visibleSnackbar: true,
+      };
+    case HIDE_SNACKBAR:
+      return {...state, visibleSnackbar: false};
+
     default:
       return state;
   }

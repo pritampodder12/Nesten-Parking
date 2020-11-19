@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Help} from '../utils/Help';
 import {Constants} from '../utils/Constants';
 import apiService from '../services/ApiService';
-import {toggleLoader, showDropdownAlert} from '../redux/actions';
+import {toggleLoader, showSnackbar} from '../redux/actions';
 
 function BookingModal(props) {
   const [visibleMenu, setVisibleMenu] = useState(false);
@@ -32,12 +32,7 @@ function BookingModal(props) {
         slots: selectedHourSlot,
       },
       (res, err) => {
-        if (err)
-          props.showDropdownAlert(
-            'warn',
-            'Book Failed!',
-            'Failed to book slot!',
-          );
+        if (err) props.showSnackbar('Book Failed!');
         props.toggleLoader();
         props.navigation.navigate('Payment');
         props.toggleModal();
@@ -125,7 +120,7 @@ function BookingModal(props) {
   );
 }
 
-export default connect(null, {toggleLoader, showDropdownAlert})(BookingModal);
+export default connect(null, {toggleLoader, showSnackbar})(BookingModal);
 
 const styles = StyleSheet.create({
   modalContainer: {backgroundColor: 'white', margin: 30, borderRadius: 10},

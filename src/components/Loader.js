@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, ActivityIndicator} from 'react-native';
+import {connect} from 'react-redux';
 
 import {Modal, Portal, Text} from 'react-native-paper';
 import {Constants} from '../utils/Constants';
@@ -17,7 +18,12 @@ function Loader(props) {
     </Portal>
   );
 }
-export default Loader;
+function mapStateToProps(state) {
+  return {
+    visible: state.helperReducer.visibleLoader,
+  };
+}
+export default connect(mapStateToProps)(Loader);
 
 const styles = StyleSheet.create({
   container: {

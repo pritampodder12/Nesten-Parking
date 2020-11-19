@@ -14,7 +14,7 @@ import {connect} from 'react-redux';
 import {styles as globalStyles} from '../../utils/styles';
 import {Constants} from '../../utils/Constants';
 import apiService from '../../services/ApiService';
-import {toggleLoader, showDropdownAlert} from '../../redux/actions';
+import {toggleLoader, showSnackbar} from '../../redux/actions';
 
 function PaymentScreen(props) {
   const [owner] = useState('5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty');
@@ -33,21 +33,17 @@ function PaymentScreen(props) {
       sensor_id: selectedSpaceId,
       spot_owner: '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty',
     };
-    apiService.depositSensor(body, (res, err) => {
-      if (res)
-        props.showDropdownAlert('success', 'Success', 'Payment Completed!');
-      if (err)
-        props.showDropdownAlert(
-          'error',
-          'Payment Failed!',
-          'Unable to procced! Try again later.',
-        );
-      props.toggleLoader();
-      props.navigation.reset({
-        index: 0,
-        routes: [{name: 'Drawer'}],
+    setTimeout(() => {
+      apiService.depositSensor(body, (res, err) => {
+        if (res) props.showSnackbar('Payment Completed!');
+        if (err) props.showSnackbar('Unable to procced! Try again later.');
+        props.toggleLoader();
+        props.navigation.reset({
+          index: 0,
+          routes: [{name: 'Drawer'}],
+        });
       });
-    });
+    }, 5000);
   };
   return (
     <View style={styles.container}>
@@ -115,7 +111,7 @@ function PaymentScreen(props) {
     </View>
   );
 }
-export default connect(null, {toggleLoader, showDropdownAlert})(PaymentScreen);
+export default connect(null, {toggleLoader, showSnackbar})(PaymentScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -134,7 +130,7 @@ const styles = StyleSheet.create({
     width: '50%',
     marginBottom: 15,
   },
-  dropdownButton: {paddingRight: 10, paddingLeft: 3},
+  dropdownButton: {paddingRight: 10, paddingLeft: 3, paddingVertical: 5},
   buttonContainer: {
     width: '100%',
   },

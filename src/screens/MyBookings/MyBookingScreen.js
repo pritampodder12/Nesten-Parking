@@ -17,16 +17,18 @@ import {Constants} from '../../utils/Constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Help} from '../../utils/Help';
 import apiService from '../../services/ApiService';
-import {toggleLoader, showDropdownAlert} from '../../redux/actions';
+import {
+  toggleLoader,
+  showDropdownAlert,
+  showSnackbar,
+} from '../../redux/actions';
 
 function MyBookingScreen(props) {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const [visibleSnakbar, setVisibleSnakbar] = useState(false);
   const [visibleMenu, setVisibleMenu] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState('1');
 
   const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-  const onToggleSnackBar = () => setVisibleSnakbar(!visibleSnakbar);
 
   const handleSettle = () => {
     let body = {
@@ -38,7 +40,7 @@ function MyBookingScreen(props) {
     props.toggleLoader();
     apiService.settleDeposition(body, (res, err) => {
       if (res) props.showDropdownAlert('success', 'Settled', 'Thank You!');
-      if (err) props.showDropdownAlert('warn', 'Failed!', 'Failed to Settle!');
+      if (err) props.showSnackbar('Failed to Settle!');
       props.toggleLoader();
       props.navigation.reset({
         index: 0,
@@ -107,20 +109,10 @@ function MyBookingScreen(props) {
         <Menu.Item onPress={handleMenuItemPress.bind(this, '3')} title="3" />
         <Menu.Item onPress={handleMenuItemPress.bind(this, '4')} title="4" />
       </Menu>
-      <Snackbar
-        style={{backgroundColor: Constants.colors.deepGrey}}
-        visible={visibleSnakbar}
-        onDismiss={onToggleSnackBar}
-        action={{
-          label: 'OK',
-          onPress: () => onToggleSnackBar(),
-        }}>
-        Settled! Thank You.
-      </Snackbar>
     </View>
   );
 }
-export default connect(null, {toggleLoader, showDropdownAlert})(
+export default connect(null, {toggleLoader, showSnackbar, showDropdownAlert})(
   MyBookingScreen,
 );
 
