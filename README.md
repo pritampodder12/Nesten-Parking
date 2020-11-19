@@ -1,1 +1,0 @@
-# reactNative_drawerNavigation5_loader_redux_releaseBuild
