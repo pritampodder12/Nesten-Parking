@@ -20,7 +20,7 @@ function Loader(props) {
 }
 function mapStateToProps(state) {
   return {
-    visible: state.helperReducer.visibleLoader,
+    visible: state.uiReducer.visibleLoader,
   };
 }
 export default connect(mapStateToProps)(Loader);

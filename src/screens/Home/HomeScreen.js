@@ -126,13 +126,8 @@ function HomeScreen(props) {
     </Provider>
   );
 }
-function mapStateToProps(state) {
-  return {
-    dropdownRef: state.helperReducer.dropdownRef,
-  };
-}
 
-export default connect(mapStateToProps, {showSnackbar})(HomeScreen);
+export default connect(null, {showSnackbar})(HomeScreen);
 
 const styles = StyleSheet.create({
   fullSpace: {

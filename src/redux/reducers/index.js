@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 
-import helperReducer from './helperReducer';
+import uiReducer from './uiReducer';
 
 const rootReducer = combineReducers({
-  helperReducer,
+  uiReducer,
 });
 export default rootReducer;

@@ -10,7 +10,7 @@ const initialState = {
   dropdownRef: null,
   snackbarMessage: '',
 };
-const helperReducer = (state = initialState, action) => {
+const uiReducer = (state = initialState, action) => {
   let {payload} = action;
   switch (action.type) {
     case TOGGLE_LOADER:
@@ -28,4 +28,4 @@ const helperReducer = (state = initialState, action) => {
       return state;
   }
 };
-export default helperReducer;
+export default uiReducer;

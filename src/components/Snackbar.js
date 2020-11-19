@@ -1,15 +1,13 @@
-import React, {useRef, useState} from 'react';
+import React from 'react';
 import {Snackbar as PaperSnackbar} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {hideSnackbar} from '../redux/actions';
 import {Constants} from '../utils/Constants';
 
 function Snackbar(props) {
-  const [visibleSnakbar, setVisibleSnakbar] = useState(false);
-  const onToggleSnackBar = () => setVisibleSnakbar(!visibleSnakbar);
-
   return (
     <PaperSnackbar
+      theme={{colors: {accent: Constants.colors.primary}}}
       style={{backgroundColor: Constants.colors.deepGrey}}
       visible={props.visible}
       onDismiss={props.hideSnackbar}
@@ -23,8 +21,8 @@ function Snackbar(props) {
 }
 function mapStateToProps(state) {
   return {
-    visible: state.helperReducer.visibleSnackbar,
-    message: state.helperReducer.snackbarMessage,
+    visible: state.uiReducer.visibleSnackbar,
+    message: state.uiReducer.snackbarMessage,
   };
 }
 
