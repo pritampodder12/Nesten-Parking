@@ -99,6 +99,7 @@ function HomeScreen(props) {
             <MapboxGL.SymbolLayer id="customImage" style={mapStyles.icon} />
           </MapboxGL.ShapeSource>
         </MapboxGL.MapView>
+        <View style={styles.mapDrawerOverlay} />
       </View>
 
       <View style={styles.buttonContainer}>
@@ -140,6 +141,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     justifyContent: 'center',
+  },
+  mapDrawerOverlay: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    opacity: 0.0,
+    height: Constants.screenSize.height,
+    width: 10,
   },
 });
 
