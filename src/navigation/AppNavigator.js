@@ -5,6 +5,7 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import DrawerNavigator from './DrawerNavigator';
 import PaymentScreen from '../screens/Payment/PaymentScreen';
 import {Constants} from '../utils/Constants';
+import {StatusBar} from 'react-native';
 
 const Stack = createStackNavigator();
 const MyTheme = {
@@ -13,11 +14,16 @@ const MyTheme = {
     ...DefaultTheme.colors,
     primary: Constants.colors.green,
     // background: Constants.colors.grey,
-    // card: '#272727',
+    card: '#272727',
     text: Constants.colors.green,
   },
 };
 class AppNavigator extends Component {
+  componentDidMount() {
+    StatusBar.setBackgroundColor('white');
+    StatusBar.setBarStyle('dark-content');
+  }
+
   render() {
     return (
       <NavigationContainer>

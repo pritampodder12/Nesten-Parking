@@ -2,9 +2,12 @@ import 'react-native-gesture-handler';
 
 import React, {Component} from 'react';
 import MapboxGL from '@react-native-mapbox-gl/maps';
+import {Provider as PaperProvider} from 'react-native-paper';
+import {Provider as StoreProvider} from 'react-redux';
 
 import AppNavigator from './navigation/AppNavigator';
 import {Config} from './utils/Config';
+import store from './redux/store';
 import Loader from './components/Loader';
 import Snackbar from './components/Snackbar';
 
@@ -16,11 +19,13 @@ class App extends Component {
   }
   render() {
     return (
-      <>
-        <AppNavigator />
-        <Snackbar />
-        <Loader />
-      </>
+      <StoreProvider store={store}>
+        <PaperProvider theme={Config.getAppTheme()}>
+          <AppNavigator />
+          <Snackbar />
+          <Loader />
+        </PaperProvider>
+      </StoreProvider>
     );
   }
 }

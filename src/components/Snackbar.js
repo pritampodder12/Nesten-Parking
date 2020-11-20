@@ -7,7 +7,6 @@ import {Constants} from '../utils/Constants';
 function Snackbar(props) {
   return (
     <PaperSnackbar
-      theme={{colors: {accent: Constants.colors.primary}}}
       style={{backgroundColor: Constants.colors.deepGrey}}
       visible={props.visible}
       onDismiss={props.hideSnackbar}

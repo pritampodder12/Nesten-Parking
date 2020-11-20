@@ -83,15 +83,26 @@ function BookingModal(props) {
                 uppercase={false}
                 color={Constants.colors.grey}
                 onPress={props.toggleModal}>
-                Cancle
+                <Text
+                  style={{
+                    fontFamily: Constants.mainFont,
+                  }}>
+                  Cancle
+                </Text>
               </Button>
               <Button
                 mode="contained"
                 uppercase={false}
-                color={Constants.colors.green}
+                color={Constants.colors.primary}
                 dark={true}
                 onPress={handleConfirm}>
-                Confirm Booking
+                <Text
+                  style={{
+                    fontFamily: Constants.mainFont,
+                    color: Constants.colors.white,
+                  }}>
+                  Confirm Booking
+                </Text>
               </Button>
             </View>
           </View>
@@ -132,6 +143,7 @@ const styles = StyleSheet.create({
   modalHeaderText: {
     fontSize: 17,
     color: Constants.colors.red,
+    fontFamily: Constants.mainFont,
   },
   modalBody: {
     paddingVertical: 20,

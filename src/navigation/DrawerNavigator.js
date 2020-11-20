@@ -5,11 +5,15 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from '../screens/Home/HomeScreen';
 import MyBookingScreen from '../screens/MyBookings/MyBookingScreen';
 import {Constants} from '../utils/Constants';
+import DrawerContent from '../components/DrawerContent';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => (
   <Drawer.Navigator
+    drawerContent={(props) => <DrawerContent {...props} />}
+    initialRouteName={Constants.routeNames.home}
+    backBehavior={'order'}
     screenOptions={{
       headerShown: true,
       headerTitleStyle: {fontFamily: Constants.mainFont},
