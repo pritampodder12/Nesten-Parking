@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View, StyleSheet} from 'react-native';
 import {Drawer, Divider, Avatar, Title} from 'react-native-paper';
@@ -6,8 +6,9 @@ import {Constants} from '../utils/Constants';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 
 function DrawerContent(props) {
-  const [active, setActive] = useState(Constants.routeNames.home);
-
+  const handlePress = (routeName) => {
+    props.navigation.navigate(routeName);
+  };
   return (
     <DrawerContentScrollView>
       <Divider />
@@ -31,24 +32,24 @@ function DrawerContent(props) {
       </View>
       <Divider />
       <Drawer.Item
-        label="Home"
-        active={active === Constants.routeNames.home}
-        onPress={() => {
-          setActive(Constants.routeNames.home);
-          props.navigation.navigate(Constants.routeNames.home);
-        }}
+        label={Constants.routeNames.home}
+        active={
+          props.state.routes[props.state.index].name ===
+          Constants.routeNames.home
+        }
+        onPress={handlePress.bind(this, Constants.routeNames.home)}
         icon={({color, size}) => (
           <Icon name="car-connected" color={color} size={size} />
         )}
       />
       <Divider />
       <Drawer.Item
-        label="Bookings"
-        active={active === Constants.routeNames.bookings}
-        onPress={() => {
-          setActive(Constants.routeNames.bookings);
-          props.navigation.navigate(Constants.routeNames.bookings);
-        }}
+        label={Constants.routeNames.bookings}
+        active={
+          props.state.routes[props.state.index].name ===
+          Constants.routeNames.bookings
+        }
+        onPress={handlePress.bind(this, Constants.routeNames.bookings)}
         icon={({color, size}) => (
           <Icon name="book-outline" color={color} size={size} />
         )}

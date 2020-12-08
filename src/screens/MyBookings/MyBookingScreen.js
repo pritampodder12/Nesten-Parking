@@ -8,20 +8,14 @@ import {
   Switch,
   Menu,
   TouchableRipple,
-  Snackbar,
 } from 'react-native-paper';
 import {connect} from 'react-redux';
 
-import {styles as globalStyles} from '../../utils/styles';
 import {Constants} from '../../utils/Constants';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Help} from '../../utils/Help';
+
 import apiService from '../../services/ApiService';
-import {
-  toggleLoader,
-  showDropdownAlert,
-  showSnackbar,
-} from '../../redux/actions';
+import {toggleLoader, showSnackbar} from '../../redux/actions';
 
 function MyBookingScreen(props) {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -39,7 +33,7 @@ function MyBookingScreen(props) {
     };
     props.toggleLoader();
     apiService.settleDeposition(body, (res, err) => {
-      if (res) props.showDropdownAlert('success', 'Settled', 'Thank You!');
+      if (res) props.showSnackbar('Settled! Thank You!');
       if (err) props.showSnackbar('Failed to Settle!');
       props.toggleLoader();
       props.navigation.reset({
@@ -76,45 +70,46 @@ function MyBookingScreen(props) {
                 <Subheading>Space ID</Subheading>
                 <View style={{flexDirection: 'row'}}>
                   <Text style={styles.text}>{selectedMenuItem}</Text>
-                  <Icon
-                    name="menu-down"
-                    color={Constants.colors.black}
-                    size={25}
-                    style={styles.arrowIcon}
-                  />
+                  <Menu
+                    visible={visibleMenu}
+                    onDismiss={toggleMenu}
+                    anchor={
+                      <Icon
+                        name="menu-down"
+                        color={Constants.colors.black}
+                        size={25}
+                        style={styles.arrowIcon}
+                      />
+                    }>
+                    {Array(4)
+                      .fill(0)
+                      .map((item, index) => (
+                        <Menu.Item
+                          key={index}
+                          onPress={handleMenuItemPress.bind(this, index + 1)}
+                          title={index + 1}
+                        />
+                      ))}
+                  </Menu>
                 </View>
               </View>
             </TouchableRipple>
             <Button
               mode="contained"
+              theme={{roundness: 100}}
               uppercase={false}
               color={Constants.colors.green}
               dark={true}
-              style={globalStyles.roundButton}
               onPress={handleSettle}>
               Settle
             </Button>
           </View>
         </Card.Content>
       </Card>
-      <Menu
-        visible={visibleMenu}
-        onDismiss={toggleMenu}
-        anchor={{
-          x: Constants.screenSize.width - 50,
-          y: Constants.screenSize.height / 5 + 30,
-        }}>
-        <Menu.Item onPress={handleMenuItemPress.bind(this, '1')} title="1" />
-        <Menu.Item onPress={handleMenuItemPress.bind(this, '2')} title="2" />
-        <Menu.Item onPress={handleMenuItemPress.bind(this, '3')} title="3" />
-        <Menu.Item onPress={handleMenuItemPress.bind(this, '4')} title="4" />
-      </Menu>
     </View>
   );
 }
-export default connect(null, {toggleLoader, showSnackbar, showDropdownAlert})(
-  MyBookingScreen,
-);
+export default connect(null, {toggleLoader, showSnackbar})(MyBookingScreen);
 
 const styles = StyleSheet.create({
   container: {
