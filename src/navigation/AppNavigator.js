@@ -1,52 +1,28 @@
-import React, {Component} from 'react';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
-import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 
-import DrawerNavigator from './DrawerNavigator';
-import PaymentScreen from '../screens/Payment/PaymentScreen';
-import {Constants} from '../utils/Constants';
-import {StatusBar} from 'react-native';
+import TabNavigator from './TabNavigator';
+import AuthNavigator from './AuthNavigator';
 
-const Stack = createStackNavigator();
-const MyTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: Constants.colors.green,
-    // background: Constants.colors.grey,
-    card: '#272727',
-    text: Constants.colors.green,
-  },
-};
-class AppNavigator extends Component {
-  componentDidMount() {
-    StatusBar.setBackgroundColor('white');
-    StatusBar.setBarStyle('dark-content');
-  }
+function AppNavigator() {
+  const isAuthenticated = useSelector(state => state.authReducer.isAuthenticated);
 
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            ...TransitionPresets.SlideFromRightIOS,
-            headerTitleStyle: {fontFamily: Constants.mainFont},
-          }}>
-          <Stack.Screen
-            name={Constants.routeNames.drawer}
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name={Constants.routeNames.payment}
-            component={PaymentScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+  useEffect(() => {
+    return () => {
+      LocationServicesDialogBox.stopListener();
+    }
+  }, []);
+
+  return (
+    <NavigationContainer>
+      {
+        isAuthenticated ?
+          <TabNavigator /> : <AuthNavigator />
+      }
+    </NavigationContainer>
+  );
+
 }
-
 export default AppNavigator;

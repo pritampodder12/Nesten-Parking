@@ -1,0 +1,132 @@
+{
+  "strict": {
+    "text-font-family": "Montserrat-Regular",
+    "text-heading-1-font-size": 36,
+    "text-heading-1-font-weight": "800",
+    "text-heading-1-font-family": "Montserrat-Bold",
+    "text-heading-2-font-size": 32,
+    "text-heading-2-font-weight": "600",
+    "text-heading-2-font-family": "Montserrat-SemiBold",
+    "text-heading-3-font-size": 28,
+    "text-heading-3-font-weight": "600",
+    "text-heading-3-font-family": "Montserrat-SemiBold",
+    "text-heading-4-font-size": 24,
+    "text-heading-4-font-weight": "600",
+    "text-heading-4-font-family": "Montserrat-SemiBold",
+    "text-heading-5-font-size": 20,
+    "text-heading-5-font-weight": "600",
+    "text-heading-5-font-family": "Montserrat-SemiBold",
+    "text-heading-6-font-size": 16,
+    "text-heading-6-font-weight": "600",
+    "text-heading-6-font-family": "Montserrat-SemiBold",
+    "text-subtitle-1-font-size": 13,
+    "text-subtitle-1-font-weight": "400",
+    "text-subtitle-1-font-family": "Montserrat-Regular",
+    "text-subtitle-2-font-size": 13,
+    "text-subtitle-2-font-weight": "400",
+    "text-subtitle-2-font-family": "Montserrat-SemiBold",
+    "text-paragraph-1-font-size": 15,
+    "text-paragraph-1-font-weight": "400",
+    "text-paragraph-1-font-family": "Montserrat-Regular",
+    "text-paragraph-2-font-size": 13,
+    "text-paragraph-2-font-weight": "400",
+    "text-paragraph-2-font-family": "Montserrat-SemiBold",
+    "text-caption-1-font-size": 12,
+    "text-caption-1-font-weight": "400",
+    "text-caption-1-font-family": "Montserrat-Regular",
+    "text-caption-2-font-size": 12,
+    "text-caption-2-font-weight": "400",
+    "text-caption-2-font-family": "Montserrat-Regular",
+    "text-label-font-size": 12,
+    "text-label-font-weight": "800",
+    "text-label-font-family": "Montserrat-Bold"
+  },
+  "components": {
+    "TopNavigation": {
+      "appearances": {
+        "default": {
+          "mapping": {
+            "backgroundColor": "color-primary-default",
+            "titleColor": "color-basic-100"
+          }
+        }
+      }
+    },
+    "Button": {
+      "appearances": {
+        "filled": {
+          "variantGroups": {
+            "status": {
+              "primary": {
+                "state": {
+                  "disabled": {
+                    "backgroundColor": "color-primary-default"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Input": {
+      "appearances": {
+        "default": {
+          "variantGroups": {
+            "status": {
+              "basic": {
+                "borderColor": "transparent",
+                "backgroundColor": "color-basic-300",
+                "textColor": "color-basic-700",
+                "labelColor": "color-basic-700",
+                "state": {
+                  "focused": {
+                    "borderColor": "transparent",
+                    "backgroundColor": "color-basic-300"
+                  },
+                  "hover": {
+                    "borderColor": "transparent",
+                    "backgroundColor": "color-basic-300"
+                  },
+                  "disabled": {
+                    "borderColor": "color-primary-default",
+                    "labelColor": "text-hint-color"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Select": {
+      "appearances": {
+        "default": {
+          "variantGroups": {
+            "status": {
+              "basic": {
+                "borderColor": "color-primary-default"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Text": {
+      "appearances": {
+        "default": {
+          "variantGroups": {
+            "category": {
+              "c1": {
+                "color": "color-basic-700"
+              },
+              "c2": {
+                "color": "color-basic-100"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

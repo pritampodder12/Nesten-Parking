@@ -1,0 +1,21 @@
+{
+    "AliasExistsException": "An account with this email or username already exists.",
+    "CodeDeliveryFailureException": "Unable to send verification code.",
+    "CodeMismatchException": "Verification codes do not match.",
+    "ExpiredCodeException": "The verification code has expired.",
+    "InvalidPasswordException": "The password provided is invalid.",
+    "LimitExceededException": "Request limit exceeded.",
+    "NotAuthorizedException": "The password you entered is incorrect.",
+    "PasswordResetRequiredException": "Password reset required.",
+    "ResourceNotFoundException": "The requested resource is not found.",
+    "TooManyFailedAttemptsException": "Too many failed attempts, please wait a while and try again.",
+    "TooManyRequestsException": "Too many requests made, please wait a while and try again.",
+    "UserNotConfirmedException": "Please verify your account before continuing.",
+    "UserNotFoundException": "No account is associated with the email or username.",
+    "UsernameExistsException": "The username already exists.",
+    "AccessDeniedException": "Access denied.",
+    "RequestExpired": "Request expired.",
+    "ServiceUnavailable": "Service currently unavailable.",
+    "NOHBERR": "No heartbeats found."
+  }
+  
